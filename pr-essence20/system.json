@@ -3,6 +3,9 @@
   "title": "Power Rangers Essence20 (Fan System)",
   "description": "Fan-made Foundry VTT system for playing Power Rangers using an Essence20-style rules framework. Unofficial and not affiliated with Renegade Game Studios, Hasbro, or Foundry Gaming LLC. No copyrighted rules text is included.",
   "version": "0.0.2",
+  "url": "https://github.com/<YOU>/<REPO>",
+"manifest": "https://github.com/<MrSquiggz>/<pr-essence20-foundry>/releases/latest/download/system.json",
+"download": "https://github.com/<MrSquiggz>/<pr-essence20-foundry>/releases/latest/download/pr-essence20.zip"
   "compatibility": {
     "minimum": 13,
     "verified": 13

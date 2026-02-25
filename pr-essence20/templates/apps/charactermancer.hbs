@@ -1,0 +1,161 @@
+<form>
+  <header>
+    <div>
+      <strong>{{localize "PR20.Charactermancer"}}</strong>
+      <div class="pr20-small">Option B mode: we warn, we don’t block.</div>
+    </div>
+    <div class="pr20-pill">Level 1 Essence Pool: {{creation.essencePoints}}</div>
+  </header>
+
+  <div class="content">
+    <div class="pr20-card">
+      <h3>Basics</h3>
+      <div class="grid2">
+        <div>
+          <label>Name</label>
+          <input type="text" name="name" value="{{actor.name}}"/>
+        </div>
+        <div>
+          <label>Level</label>
+          <input type="number" name="level" value="1" min="1"/>
+        </div>
+        <div>
+          <label>Role (text for now)</label>
+          <input type="text" name="role" placeholder="e.g. Scout, Ranger, etc."/>
+        </div>
+        <div>
+          <label>Origin (text for now)</label>
+          <input type="text" name="origin" placeholder="e.g. Athletic, Popular, etc."/>
+        </div>
+        <div>
+          <label>Pronouns</label>
+          <input type="text" name="pronouns"/>
+        </div>
+        <div>
+          <label>Languages</label>
+          <input type="text" name="languages"/>
+        </div>
+      </div>
+      <div class="full" style="margin-top:10px;">
+        <label>Description</label>
+        <textarea name="description" rows="3"></textarea>
+      </div>
+      <div class="grid2" style="margin-top:10px;">
+        <div>
+          <label>Influences</label>
+          <input type="text" name="influences"/>
+        </div>
+        <div>
+          <label>Hang-ups</label>
+          <input type="text" name="hangups"/>
+        </div>
+      </div>
+      <div class="full" style="margin-top:10px;">
+        <label>Notes</label>
+        <textarea name="notes" rows="3"></textarea>
+      </div>
+    </div>
+
+    <div class="pr20-card">
+      <h3>Essences</h3>
+      <div class="grid2">
+        <div>
+          <label>Strength</label>
+          <input type="number" name="essence.strength" value="1" min="0"/>
+        </div>
+        <div>
+          <label>Speed</label>
+          <input type="number" name="essence.speed" value="1" min="0"/>
+        </div>
+        <div>
+          <label>Smarts</label>
+          <input type="number" name="essence.smarts" value="1" min="0"/>
+        </div>
+        <div>
+          <label>Social</label>
+          <input type="number" name="essence.social" value="1" min="0"/>
+        </div>
+      </div>
+      <div class="pr20-small" style="margin-top:8px;">
+        Builder will warn if the total isn’t {{creation.essencePoints}}.
+      </div>
+
+      <h3 style="margin-top:12px;">Morphed & Armor</h3>
+      <label class="pr20-pill"><input type="checkbox" name="morphed"/> Morphed</label>
+      <div class="grid2" style="margin-top:10px;">
+        <div>
+          <label>Armor Training</label>
+          <select name="armor.training">
+            {{#each armorTraining as |a|}}
+              <option value="{{a.id}}">{{a.label}} (+{{a.bonus}} morphed Toughness)</option>
+            {{/each}}
+          </select>
+        </div>
+        <div>
+          <label>Armor Toughness Bonus</label>
+          <input type="number" name="armor.bonusToughness" value="0" min="0"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr20-card full">
+      <h3>Skills</h3>
+      <div class="pr20-small">Set ranks and (optionally) specializations. We’ll warn if you “overspend” ranks vs essence scores.</div>
+
+      {{#each skillGroups as |group groupKey|}}
+        <div style="margin-top:12px;">
+          <div class="pr20-pill"><strong style="text-transform:capitalize;">{{groupKey}}</strong></div>
+        </div>
+
+        <div class="pr20-skill-grid" style="margin-top:8px;">
+          <div class="header">Skill</div>
+          <div class="header">Rank</div>
+          <div class="header">Specialized</div>
+          <div class="header">Spec Name</div>
+          <div class="header"></div>
+
+          {{#each group as |s|}}
+            <div>{{s.label}}</div>
+            <input type="number" name="skill.{{s.id}}.rank" value="0" min="0" max="6"/>
+            <label class="pr20-small">
+              <input type="checkbox" name="skill.{{s.id}}.specialized" {{#if s.noSpec}}disabled{{/if}}/> {{#if s.noSpec}}—{{else}}Yes{{/if}}
+            </label>
+            <input type="text" name="skill.{{s.id}}.specialization" placeholder="optional" {{#if s.noSpec}}disabled{{/if}}/>
+            <div class="pr20-small">{{#if s.noRoll}}(no roll){{else}}{{/if}}</div>
+          {{/each}}
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="pr20-card">
+      <h3>Resources</h3>
+      <div class="grid2">
+        <div>
+          <label>Health (current)</label>
+          <input type="number" name="health.value" value="0" min="0"/>
+        </div>
+        <div>
+          <label>Base HP</label>
+          <input type="number" name="health.base" value="0" min="0"/>
+        </div>
+        <div>
+          <label>Personal Power (current)</label>
+          <input type="number" name="pp.value" value="0" min="0"/>
+        </div>
+        <div>
+          <label>Personal Power Max</label>
+          <input type="number" name="pp.max" value="0" min="0"/>
+        </div>
+        <div>
+          <label>Movement (ft)</label>
+          <input type="number" name="move" value="30" min="0"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <button type="button" data-action="cancel">Cancel</button>
+    <button type="submit" data-action="create"><i class="fas fa-check"></i> Create / Apply</button>
+  </div>
+</form>

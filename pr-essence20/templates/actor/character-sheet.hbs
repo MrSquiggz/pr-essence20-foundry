@@ -1,0 +1,193 @@
+<div class="pr20-sheet">
+  <header class="pr20-header">
+    <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+    <div>
+      <div class="pr20-small">Name</div>
+      <input type="text" name="name" value="{{actor.name}}"/>
+      <div class="pr20-small" style="margin-top:6px;">Role / Origin</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <input type="text" name="system.details.role" value="{{system.details.role}}" placeholder="Role"/>
+        <input type="text" name="system.details.origin" value="{{system.details.origin}}" placeholder="Origin"/>
+      </div>
+    </div>
+    <div>
+      <button type="button" data-action="openBuilder" style="width:100%;margin-bottom:8px;">
+        <i class="fas fa-wand-magic-sparkles"></i> {{localize "PR20.Charactermancer"}}
+      </button>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div>
+          <div class="pr20-small">{{localize "PR20.Level"}}</div>
+          <input type="number" name="system.details.level" value="{{system.details.level}}" min="1"/>
+        </div>
+        <div>
+          <div class="pr20-small">{{localize "PR20.Morphed"}}</div>
+          <label class="pr20-pill"><input type="checkbox" name="system.toggles.morphed" {{#if system.toggles.morphed}}checked{{/if}}/> Morphed</label>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="pr20-grid">
+    <div class="pr20-card">
+      <h3>{{localize "PR20.Essences"}}</h3>
+      <div style="display:grid;grid-template-columns:1fr 90px;gap:6px 10px;align-items:center;">
+        {{#each essences as |e|}}
+          <div>{{e.label}}</div>
+          <input type="number" name="system.essences.{{e.id}}.value" value="{{e.value}}" min="0"/>
+        {{/each}}
+      </div>
+
+      <h3 style="margin-top:12px;">{{localize "PR20.ArmorTraining"}}</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div>
+          <div class="pr20-small">Training</div>
+          <select name="system.armor.training">
+            {{#each armorTraining as |a|}}
+              <option value="{{a.id}}" {{#if (eq a.id ../system.armor.training)}}selected{{/if}}>{{a.label}} (+{{a.bonus}} morphed Toughness)</option>
+            {{/each}}
+          </select>
+        </div>
+        <div>
+          <div class="pr20-small">Armor Toughness Bonus</div>
+          <input type="number" name="system.armor.bonusToughness" value="{{system.armor.bonusToughness}}" min="0"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="pr20-card">
+      <h3>{{localize "PR20.Resources"}}</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-items:end;">
+        <div>
+          <div class="pr20-small">{{localize "PR20.Health"}}</div>
+          <input type="number" name="system.resources.health.value" value="{{system.resources.health.value}}" min="0"/>
+        </div>
+        <div>
+          <div class="pr20-small">{{localize "PR20.HealthBase"}}</div>
+          <input type="number" name="system.resources.health.base" value="{{system.resources.health.base}}" min="0"/>
+        </div>
+        <div>
+          <div class="pr20-small">Max (Base + Conditioning)</div>
+          <input type="number" value="{{system.resources.health.max}}" disabled/>
+        </div>
+
+        <div>
+          <div class="pr20-small">{{localize "PR20.PersonalPower"}}</div>
+          <input type="number" name="system.resources.personalPower.value" value="{{system.resources.personalPower.value}}" min="0"/>
+        </div>
+        <div>
+          <div class="pr20-small">PP Max</div>
+          <input type="number" name="system.resources.personalPower.max" value="{{system.resources.personalPower.max}}" min="0"/>
+        </div>
+        <div>
+          <div class="pr20-small">{{localize "PR20.Movement"}}</div>
+          <input type="number" name="system.resources.movement.value" value="{{system.resources.movement.value}}" min="0"/>
+        </div>
+      </div>
+
+      <h3 style="margin-top:12px;">{{localize "PR20.Defenses"}}</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;">
+        <div><strong>{{localize "PR20.Toughness"}}</strong>: {{system.defenses.toughness.total}} <span class="pr20-small">(base {{system.defenses.toughness.base}})</span></div>
+        <div><strong>{{localize "PR20.Evasion"}}</strong>: {{system.defenses.evasion.total}} <span class="pr20-small">(base {{system.defenses.evasion.base}})</span></div>
+        <div><strong>{{localize "PR20.Willpower"}}</strong>: {{system.defenses.willpower.total}} <span class="pr20-small">(base {{system.defenses.willpower.base}})</span></div>
+        <div><strong>{{localize "PR20.Cleverness"}}</strong>: {{system.defenses.cleverness.total}} <span class="pr20-small">(base {{system.defenses.cleverness.base}})</span></div>
+      </div>
+    </div>
+
+    <div class="pr20-card" style="grid-column:1/-1;">
+      <h3>{{localize "PR20.Skills"}}</h3>
+
+      {{#each skillGroups as |group groupKey|}}
+        <div style="margin-top:10px;">
+          <div class="pr20-pill"><strong style="text-transform:capitalize;">{{groupKey}}</strong></div>
+        </div>
+
+        <div class="pr20-skill-grid" style="margin-top:8px;">
+          <div class="header">Skill</div>
+          <div class="header">Rank</div>
+          <div class="header">Specialized</div>
+          <div class="header">Spec Name (optional)</div>
+          <div class="header"></div>
+
+          {{#each group as |s|}}
+            <div>{{s.label}}</div>
+
+            <input type="number" name="system.skills.{{s.id}}.rank" value="{{s.rank}}" min="0" max="6" {{#if s.noRoll}}title="Conditioning caps at 6"{{/if}}/>
+
+            <label class="pr20-small">
+              <input type="checkbox" name="system.skills.{{s.id}}.specialized" {{#if s.specialized}}checked{{/if}} {{#if s.noSpec}}disabled{{/if}}/>
+              {{#if s.noSpec}}—{{else}}Yes{{/if}}
+            </label>
+
+            <input type="text" name="system.skills.{{s.id}}.specialization" value="{{s.specialization}}" placeholder="e.g. Parkour, Medicine, etc." {{#if s.noSpec}}disabled{{/if}}/>
+
+            {{#if s.noRoll}}
+              <button type="button" disabled>—</button>
+            {{else}}
+              <button type="button" data-action="rollSkill" data-skill="{{s.id}}">{{localize "PR20.Roll"}}</button>
+            {{/if}}
+          {{/each}}
+        </div>
+      {{/each}}
+
+      <div class="pr20-small" style="margin-top:10px;">
+        Holding <strong>Specialized</strong> rolls the “staircase” dice and uses the highest of those dice.
+      </div>
+    </div>
+
+    <div class="pr20-card" style="grid-column:1/-1;">
+      <h3>{{localize "PR20.Notes"}}</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div>
+          <div class="pr20-small">Description</div>
+          <textarea name="system.details.description" rows="5" style="width:100%;">{{system.details.description}}</textarea>
+        </div>
+        <div>
+          <div class="pr20-small">Notes</div>
+          <textarea name="system.details.notes" rows="5" style="width:100%;">{{system.details.notes}}</textarea>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
+        <div>
+          <div class="pr20-small">Languages</div>
+          <input type="text" name="system.details.languages" value="{{system.details.languages}}" />
+        </div>
+        <div>
+          <div class="pr20-small">Pronouns</div>
+          <input type="text" name="system.details.pronouns" value="{{system.details.pronouns}}" />
+        </div>
+        <div>
+          <div class="pr20-small">Influences</div>
+          <input type="text" name="system.details.influences" value="{{system.details.influences}}" />
+        </div>
+        <div>
+          <div class="pr20-small">Hang-ups</div>
+          <input type="text" name="system.details.hangups" value="{{system.details.hangups}}" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pr20-items">
+    <h3 style="margin: 0 0 8px 0;">{{localize "PR20.Items"}}</h3>
+    {{#each itemsByType as |items type|}}
+      <div class="pr20-card" style="margin-bottom:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <h3 style="margin:0;text-transform:capitalize;">{{type}}</h3>
+          <button type="button" data-action="createItem" data-type="{{type}}">{{localize "PR20.Create"}}</button>
+        </div>
+
+        {{#if items.length}}
+          {{#each items as |it|}}
+            <div class="item-row">
+              <img src="{{it.img}}" title="{{it.name}}"/>
+              <a data-uuid="{{it.uuid}}" class="item-name">{{it.name}}</a>
+              <button type="button" data-action="deleteItem" data-item-id="{{it.id}}">{{localize "PR20.Delete"}}</button>
+            </div>
+          {{/each}}
+        {{else}}
+          <div class="pr20-small">No items of this type yet.</div>
+        {{/if}}
+      </div>
+    {{/each}}
+  </section>
+</div>

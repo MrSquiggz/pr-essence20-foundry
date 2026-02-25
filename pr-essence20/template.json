@@ -1,0 +1,166 @@
+{
+  "Actor": {
+    "character": {
+      "details": {
+        "level": 1,
+        "role": "",
+        "origin": "",
+        "pronouns": "",
+        "description": "",
+        "languages": "",
+        "influences": "",
+        "hangups": "",
+        "notes": ""
+      },
+      "toggles": {
+        "morphed": false
+      },
+      "essences": {
+        "strength": {
+          "value": 1
+        },
+        "speed": {
+          "value": 1
+        },
+        "smarts": {
+          "value": 1
+        },
+        "social": {
+          "value": 1
+        }
+      },
+      "skills": {},
+      "resources": {
+        "health": {
+          "value": 0,
+          "base": 0,
+          "max": 0
+        },
+        "personalPower": {
+          "value": 0,
+          "max": 0
+        },
+        "movement": {
+          "value": 30
+        }
+      },
+      "armor": {
+        "training": "light",
+        "bonusToughness": 0
+      },
+      "defenses": {
+        "toughness": {
+          "base": 10,
+          "total": 10
+        },
+        "evasion": {
+          "base": 10,
+          "total": 10
+        },
+        "willpower": {
+          "base": 10,
+          "total": 10
+        },
+        "cleverness": {
+          "base": 10,
+          "total": 10
+        }
+      }
+    },
+    "npc": {
+      "details": {
+        "level": 1,
+        "notes": ""
+      },
+      "toggles": {
+        "morphed": false
+      },
+      "essences": {
+        "strength": {
+          "value": 1
+        },
+        "speed": {
+          "value": 1
+        },
+        "smarts": {
+          "value": 1
+        },
+        "social": {
+          "value": 1
+        }
+      },
+      "skills": {},
+      "resources": {
+        "health": {
+          "value": 0,
+          "base": 0,
+          "max": 0
+        },
+        "personalPower": {
+          "value": 0,
+          "max": 0
+        },
+        "movement": {
+          "value": 30
+        }
+      },
+      "armor": {
+        "training": "light",
+        "bonusToughness": 0
+      },
+      "defenses": {
+        "toughness": {
+          "base": 10,
+          "total": 10
+        },
+        "evasion": {
+          "base": 10,
+          "total": 10
+        },
+        "willpower": {
+          "base": 10,
+          "total": 10
+        },
+        "cleverness": {
+          "base": 10,
+          "total": 10
+        }
+      }
+    }
+  },
+  "Item": {
+    "origin": {
+      "description": "",
+      "effects": {}
+    },
+    "role": {
+      "description": "",
+      "effects": {}
+    },
+    "perk": {
+      "description": "",
+      "effects": {}
+    },
+    "gear": {
+      "description": "",
+      "effects": {}
+    },
+    "weapon": {
+      "description": "",
+      "effects": {}
+    },
+    "shield": {
+      "description": "",
+      "effects": {
+        "equipped": false
+      }
+    },
+    "armor": {
+      "description": "",
+      "effects": {
+        "equipped": false,
+        "toughnessBonus": 0
+      }
+    }
+  }
+}

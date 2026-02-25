@@ -1,0 +1,82 @@
+{
+  "id": "pr-essence20",
+  "title": "Power Rangers Essence20 (Fan System)",
+  "description": "Fan-made Foundry VTT system for playing Power Rangers using an Essence20-style rules framework. Unofficial and not affiliated with Renegade Game Studios, Hasbro, or Foundry Gaming LLC. No copyrighted rules text is included.",
+  "version": "0.0.2",
+  "compatibility": {
+    "minimum": 13,
+    "verified": 13
+  },
+  "authors": [
+    {
+      "name": "Your Name"
+    }
+  ],
+  "esmodules": [
+    "module/init.mjs"
+  ],
+  "styles": [
+    "styles/system.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {
+        "htmlFields": [
+          "details.notes"
+        ]
+      },
+      "npc": {
+        "htmlFields": [
+          "details.notes"
+        ]
+      }
+    },
+    "Item": {
+      "origin": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "role": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "perk": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "gear": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "weapon": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "shield": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "armor": {
+        "htmlFields": [
+          "description"
+        ]
+      }
+    }
+  },
+  "initiative": "1d20",
+  "primaryTokenAttribute": "resources.health",
+  "secondaryTokenAttribute": "resources.personalPower"
+}

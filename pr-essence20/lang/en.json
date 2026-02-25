@@ -1,0 +1,26 @@
+{
+  "PR20": {
+    "SheetTitle": "PR Essence20",
+    "Essences": "Essences",
+    "Skills": "Skills",
+    "Items": "Items",
+    "Roll": "Roll",
+    "Create": "Create",
+    "Delete": "Delete",
+    "Notes": "Notes",
+    "Level": "Level",
+    "Resources": "Resources",
+    "Health": "Health",
+    "HealthBase": "Base HP",
+    "PersonalPower": "Personal Power",
+    "Movement": "Movement",
+    "Defenses": "Defenses",
+    "Toughness": "Toughness",
+    "Evasion": "Evasion",
+    "Willpower": "Willpower",
+    "Cleverness": "Cleverness",
+    "Morphed": "Morphed",
+    "ArmorTraining": "Armor Training",
+    "Charactermancer": "Character Builder"
+  }
+}

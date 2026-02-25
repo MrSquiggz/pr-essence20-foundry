@@ -1,0 +1,18 @@
+<div class="pr20-item-sheet">
+  <header class="pr20-header">
+    <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div style="grid-column: 2 / -1;">
+      <div class="pr20-small">Name</div>
+      <input type="text" name="name" value="{{item.name}}"/>
+      <div class="pr20-small" style="margin-top:6px;">Type: {{item.type}}</div>
+    </div>
+  </header>
+
+  <section style="padding:12px;">
+    <div class="pr20-small">Description</div>
+    <textarea name="system.description" rows="10" style="width:100%;">{{system.description}}</textarea>
+    <div class="pr20-small" style="margin-top:8px;">
+      If you ever distribute this, keep descriptions copyright-safe (page refs & your own wording).
+    </div>
+  </section>
+</div>
